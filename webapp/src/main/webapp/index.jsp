@@ -3,137 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My DevOps Project 6</title>
+    <title>AWS DevOps Project 6</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-
         body {
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            overflow-x: hidden;
         }
-
-        .container {
+        header {
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 20px;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #ff4081, #ffab40);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
             padding: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
-            animation: fadeIn 1.5s ease-out;
-            max-width: 800px;
-            width: 90%;
-            margin: 20px 0;
+            margin: 20px;
+            text-align: center;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
         }
-
-        .container:hover {
-            transform: scale(1.05);
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 0, 150, 0.3));
+            animation: animate-bg 15s linear infinite;
+            z-index: 0;
         }
-
-        h1 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 24px;
-            animation: textAppear 2s ease-out;
+        @keyframes animate-bg {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
         }
-
-        p {
-            margin: 10px 0;
-            font-size: 1.2rem;
+        .hero h2 {
+            margin: 0;
+            font-size: 2em;
+            z-index: 1;
+            position: relative;
         }
-
-        button {
-            padding: 12px 24px;
-            background-color: #ff6f61;
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: #1f1f1f;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: calc(33% - 60px);
+            vertical-align: top;
+            color: #ffffff;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        footer {
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            background: #ff4081;
             color: #ffffff;
             border: none;
-            border-radius: 25px;
-            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            animation: buttonBounce 2s infinite;
-            margin-top: 20px;
+            font-size: 1em;
+            transition: background 0.3s;
         }
-
-        button:hover {
-            background-color: #e65b50;
-            transform: scale(1.1);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        #message {
-            margin-top: 24px;
-            color: #ffeb3b;
-            font-size: 1.3rem;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        .footer-text {
-            margin-top: 10px;
-            font-size: 1rem;
-            font-style: italic;
-            color: #ffeb3b;
-            text-shadow: 0 0 10px rgba(255, 235, 59, 0.5), 0 0 20px rgba(255, 235, 59, 0.3);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes textAppear {
-            0% { opacity: 0; transform: translateY(-30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes buttonBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px rgba(255, 235, 59, 0.5), 0 0 20px rgba(255, 235, 59, 0.3); }
-            to { text-shadow: 0 0 20px rgba(255, 235, 59, 0.8), 0 0 30px rgba(255, 235, 59, 0.6); }
+        .btn:hover {
+            background: #ff69b4;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My DevOps Project 6</h1>
-        <p>Technologies Used: Jenkins, Docker, Kubernetes, Tomcat.</p>
-        <p>Languages Used: HTML, CSS, Java, JavaScript.</p>
-        <button onclick="displayMessage()">Click Me</button>
-        <p id="message"></p>
+    <header>
+        <h1>AWS DevOps Project 6</h1>
+    </header>
+    <div class="hero">
+        <h2>Welcome to the DevOps Project</h2>
+    </div>
+    <div class="content">
+        <div class="card">
+            <h3>Tomcat</h3>
+            <p>Deploying applications on Apache Tomcat.</p>
+            <button class="btn" onclick="showDetails('tomcat')">Learn More</button>
+        </div>
+        <div class="card">
+            <h3>Docker</h3>
+            <p>Containerizing applications using Docker.</p>
+            <button class="btn" onclick="showDetails('docker')">Learn More</button>
+        </div>
+        <div class="card">
+            <h3>Kubernetes</h3>
+            <p>Managing containers with Kubernetes.</p>
+            <button class="btn" onclick="showDetails('kubernetes')">Learn More</button>
+        </div>
+        <div class="card">
+            <h3>Jenkins</h3>
+            <p>Continuous integration and delivery with Jenkins.</p>
+            <button class="btn" onclick="showDetails('jenkins')">Learn More</button>
+        </div>
     </div>
     <footer>
-        
-        <p class="footer-text">This website was created by Pratik Pardeshi, a professional Aws Devops Engineer with expertise in Jenkins, Docker, Kubernetes, Tomcat etc.</p>
-        
+        <p>&copy; 2024 Pratik Pardeshi. All Rights Reserved.</p>
     </footer>
-
     <script>
-        function displayMessage() {
-            const message = document.getElementById('message');
-            message.innerText = "Welcome to the exciting world of DevOps with Pratik Pardeshi!";
-            message.style.opacity = 1;
-            message.style.transform = 'translateY(0)';
+        function showDetails(tech) {
+            alert('Details about ' + tech + ' will be coming soon!');
         }
     </script>
 </body>
